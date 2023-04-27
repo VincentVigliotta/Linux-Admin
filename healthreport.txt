@@ -1,0 +1,21 @@
+#!/bin/bash
+#Vincent Vigliotta
+#Health Report Script
+#This script will run various commands and compile the information into a text document
+#PLEASE NOTE: sysstat package must be installed in order for this script to work
+touch /var/log/hr.txt
+#Get current what version of Linux we are running
+echo Linux Version: > /var/log/hr.txt
+uname -srm >> /var/log/hr.txt
+#Get current CPU usage with mpstat command
+echo CPU Usage: >> /var/log/hr.txt
+mpstat >> /var/log/hr.txt
+#Get amount of memory being used and amount of free memory with the vmstat command
+echo Total Memory: >> /var/log/hr.txt
+vmstat -s | grep "total memory" >> /var/log/hr.txt
+echo Free Memory: >> /var/log/hr.txt
+vmstat -s | grep "free memory" >> /var/log/hr.txt
+#Get uptime of the server
+echo Server Uptime: >> /var/log/hr.txt
+uptime >> /var/log/hr.txt
+
